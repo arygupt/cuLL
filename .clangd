@@ -1,0 +1,18 @@
+# clangd config for neovim: CUDA autocomplete + error checking on the Mac.
+# Parses like the PC would (Linux x86_64, gcc 13 libstdc++) using headers copied into .sysroot/.
+# CUDA headers are 12.9 (from the PC's Windows install) because clangd 21 can't parse CUDA 13 headers yet;
+# your code still compiles with nvcc 13.1 on the PC. Same APIs for everything in this book.
+CompileFlags:
+  Add:
+    - -xcuda
+    - --target=x86_64-linux-gnu
+    - --sysroot=/Users/aryangupta/programming/cuLL/.sysroot
+    - --cuda-path=/Users/aryangupta/programming/cuLL/.sysroot/usr/local/cuda-12.9
+    - --cuda-gpu-arch=sm_75
+    - --no-cuda-version-check
+    - -nocudalib
+    - -Xclang
+    - -target-sdk-version=12.8
+    - -std=c++17
+    - -I/Users/aryangupta/programming/cuLL/common
+  Remove: [-arch=*, -lineinfo, --use_fast_math, -Xcompiler*, --expt-*]

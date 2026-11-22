@@ -1,0 +1,8 @@
+*.pdf
+*.epub
+book.cu/
+.sysroot/
+*.o
+*.out
+build/
+.DS_Store
